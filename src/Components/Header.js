@@ -1,26 +1,28 @@
 import React from 'react';
-// import { getUser } from '../services/userAPI';
-// import Loading from './Loading';
+import { getUser } from '../services/userAPI';
+import Loading from './Loading';
 
 class Header extends React.Component {
-  // state = {
-  //   load: true,
-  // }
+  state = {
+    load: true,
+    user: undefined,
+  };
 
-  // recuperaNome = async () => {
-  //   await getUser();
-  //   this.setState({
-  //     load: false,
-  //   });
-  // };
+  componentDidMount = async () => {
+    this.setState({
+      user: await getUser(),
+      load: false,
+    });
+  };
 
   render() {
+    const { load, user } = this.state;
+    if (load) return <Loading />;
     return (
       <header data-testid="header-component">
-        <h1>
-          CABEÇALHO
-          {}
-        </h1>
+        <h2 data-testid="header-user-name">
+          {user.name}
+        </h2>
       </header>
     );
   }
