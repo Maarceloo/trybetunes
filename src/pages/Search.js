@@ -63,12 +63,13 @@ class Search extends React.Component {
           && albuns.map((disco, index) => (
             <div key={ index }>
               <img src={ disco.artworkUrl100 } alt="imagem do disco" />
-              <h3>{disco.collectionName}</h3>
               <h4>{disco.artistName}</h4>
               <Link
                 data-testid={ `link-to-album-${disco.collectionId}` }
                 to={ `/album/${disco.collectionId}` }
-              />
+              >
+                {disco.collectionName}
+              </Link>
             </div>
           ))}
       </div>
