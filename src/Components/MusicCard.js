@@ -18,10 +18,11 @@ class MusicCard extends React.Component {
           <label htmlFor="fav">
             Favorita
             <input
-              name="fav"
+              id="fav"
+              name={ JSON.stringify(music) }
               type="checkbox"
               checked={ isTrue }
-              onClick={ favorite(music) }
+              onChange={ favorite }
               data-testid={ `checkbox-music-${trackId}` }
             />
           </label>
@@ -32,6 +33,8 @@ class MusicCard extends React.Component {
 }
 
 MusicCard.propTypes = {
+  isTrue: PropTypes.bool.isRequired,
+  favorite: PropTypes.func.isRequired,
   music: PropTypes.shape({
     trackName: PropTypes.string.isRequired,
     previewUrl: PropTypes.string.isRequired,
@@ -40,3 +43,5 @@ MusicCard.propTypes = {
 };
 
 export default MusicCard;
+
+// EXERCICIO 09 REALIZADO COM AJUDA DO JOAO OTAVIO TURMA 21

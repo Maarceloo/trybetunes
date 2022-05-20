@@ -15,7 +15,7 @@ class Album extends React.Component {
       albumName: '',
       musicas: [],
       songsFavorites: [],
-      loading: true,
+      loading: false,
     };
   }
 
@@ -31,10 +31,12 @@ class Album extends React.Component {
     });
   };
 
-  favorite = async (music) => {
-    // this.setState({ loading: true });
-    await addSong(music);
-    this.setState({ loading: false });
+  favorite = async ({ target }) => {
+    if (target.checked) {
+      this.setState({ loading: true });
+      await addSong(JSON.parse(target.name));
+      this.musicasFavoritas();
+    }
   };
 
   musicasFavoritas = async () => {
